@@ -44,7 +44,7 @@ Bu projeyi kendi bilgisayarınızda çalıştırmak için aşağıdaki adımlar�
 
 Projeyi klonlayın:
 ```bash
-git clone https://github.com/kullaniciadi/youtube-download.git
+git clone https://github.com/basaranbaran/YT-Downloader
 cd youtube-download
 ```
 
@@ -121,7 +121,7 @@ Follow these steps to run the project on your local machine.
 
 Clone the project:
 ```bash
-git clone https://github.com/username/youtube-download.git
+git clone https://github.com/basaranbaran/YT-Downloader
 cd youtube-download
 ```
 
