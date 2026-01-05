@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Downloader</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Download Location Banner -->
+        <div id="locationBanner" class="location-banner">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Downloads will be saved to: <b id="downloadPath">Loading...</b></span>
+        </div>
+
+        <header>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='favicon.png') }}" alt="Logo" class="logo-icon">
+                <h1>YT Downloader</h1>
+            </div>
+            <p class="subtitle">Download videos and audio in high quality.</p>
+        </header>
+
+        <!-- Success Feedback Message -->
+        <div id="successMessage" class="success-message hidden">
+            <i class="fa-solid fa-check-circle"></i>
+            <span id="successText">Download Completed Successfully!</span>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <i class="fa-solid fa-link"></i>
+                <input type="text" id="urlInput" placeholder="Paste YouTube link here..." autocomplete="off">
+                <button id="analyzeBtn" class="primary-btn">
+                    <span class="btn-text">Analyze</span>
+                    <span class="btn-loader"><i class="fa-solid fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+            <p id="errorMsg" class="error-msg"></p>
+        </div>
+
+        <div id="resultArea" class="result-card hidden">
+            <div class="video-info">
+                <img id="thumbnail" src="" alt="Thumbnail" class="thumbnail">
+                <div class="details">
+                    <h2 id="videoTitle">Video Title</h2>
+                    <p class="meta"><i class="fa-solid fa-user"></i> <span id="uploader">Channel</span> • <i
+                            class="fa-solid fa-clock"></i> <span id="duration">00:00</span></p>
+                </div>
+            </div>
+
+            <!-- Playlist Toggle Area -->
+            <div id="playlistArea" class="playlist-card hidden">
+                <div class="playlist-info">
+                    <i class="fa-solid fa-list-ul"></i>
+                    <div>
+                        <h3>Playlist Detected</h3>
+                        <p id="playlistCount">0 videos found</p>
+                    </div>
+                </div>
+                <div class="mode-toggle">
+                    <input type="radio" name="downloadMode" value="single" id="modeSingle" checked>
+                    <label for="modeSingle">Download This Video Only</label>
+
+                    <input type="radio" name="downloadMode" value="playlist" id="modePlaylist">
+                    <label for="modePlaylist">Download Full Album</label>
+                </div>
+
+                <!-- Progress Log for Playlist -->
+                <div id="progressLog" class="progress-log hidden">
+                    <div class="log-header">
+                        <span>Download Progress</span>
+                        <span id="progressStats">0/0</span>
+                    </div>
+                    <div id="logContent" class="log-content"></div>
+                </div>
+            </div>
+
+            <div class="options">
+                <div class="option-group">
+                    <label>Format</label>
+                    <div class="toggle-switch">
+                        <input type="radio" name="fileType" value="video" id="typeVideo" checked>
+                        <label for="typeVideo" class="toggle-label"><i class="fa-solid fa-video"></i> Video</label>
+
+                        <input type="radio" name="fileType" value="audio" id="typeAudio">
+                        <label for="typeAudio" class="toggle-label"><i class="fa-solid fa-music"></i> Audio</label>
+                    </div>
+                </div>
+
+                <div class="option-group" id="qualityGroup">
+                    <label>Quality</label>
+                    <select id="qualitySelect">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="download-buttons">
+                <button id="downloadBtn" class="download-btn">
+                    <span class="btn-text">Download Now</span>
+                    <span class="btn-loader"><i class="fa-solid fa-circle-notch fa-spin"></i> Processing...</span>
+                </button>
+                <button id="cancelBtn" class="cancel-btn hidden">
+                    <i class="fa-solid fa-xmark"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
